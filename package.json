@@ -1,0 +1,29 @@
+{
+  "name": "way-farer",
+  "version": "1.0.0",
+  "description": "Way farer api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olalekanteeblaze/way-farer.git"
+  },
+  "author": "Moshood Abidemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olalekanteeblaze/way-farer/issues"
+  },
+  "homepage": "https://github.com/olalekanteeblaze/way-farer#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai-http": "^4.3.0"
+  }
+}
