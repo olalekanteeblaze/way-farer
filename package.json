@@ -4,7 +4,7 @@
   "description": "Way farer api ",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha tests/test"
   },
   "repository": {
     "type": "git",

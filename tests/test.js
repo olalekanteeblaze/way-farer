@@ -7,37 +7,79 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 //Our parent block
-describe('Books', () => {
+describe('Users', () => {
     beforeEach((done) => { //Before each test we empty the database
-        Book.remove({}, (err) => { 
+        User.remove({}, (err) => { 
            done();           
         });        
     });
 /*
-  * Test the /GET route
+  * Test the /POST route
   */
-  describe('/GET book', () => {
-      it('it should GET all the books', (done) => {
+  describe('/POST ', () => {
+      it('it should POST user signup info', (done) => {
         chai.request(server)
-            .get('/book')
+            .post('/auth/signup')
+            .send(user)
             .end((err, res) => {
                   res.should.have.status(200);
-                  res.body.should.be.a('array');
+                  res.body.data.should.be.a('object');
                   res.body.length.should.be.eql(0);
               done();
             });
       });
-  });
-
-});
-describe('/GET trip', () => {
-    it('should GET User trip', (done) => {
+      it('it should POST signin info', (done) => {
         chai.request(server)
-        .get('/trip')
-        .end((err,res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            res.body.length.should.be.eql(0)
-        })
-    })
+            .post('/auth/signin')
+            .send(user)
+            .end((err, res) => {
+                  res.should.have.status(200);
+                  res.body.data.should.be.a('object');
+                  res.body.length.should.be.eql(0);
+              done();
+            });
+      });
+
+    });
+  });
+describe('Trips', () => {
+    beforeEach((done) => {
+        Trip.remove({}, (err) => {
+            done();
+        });
+    });
+    /*
+    *Test the POST endpoints
+    */
+    describe('/ POST ', () => {
+        it('it should POST trips', (done) => {
+            chai.request(server)
+                .post('/trips')
+                .send(trip)
+                .end((err, res) => {
+                      res.should.have.status(200);
+                      res.body.data.should.be.a('object');
+                      res.body.length.should.be.eql(0);
+                  done();
+                });
+          });
+    });
+    /*
+    *Test the GET endpoints
+    */
+   describe('/ GET ', () => {
+    it('it should GET trips', (done) => {
+        chai.request(server)
+            .get('/trips')
+            .end((err, res) => {
+                  res.should.have.status(200);
+                  res.body.data.should.be.a('array');
+                  res.body.length.should.be.eql(0);
+              done();
+            });
+      });
+});
+
 })
+
+
