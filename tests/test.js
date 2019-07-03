@@ -6,7 +6,7 @@ let should = chai.should();
 
 
 chai.use(chaiHttp);
-//Our parent block
+
 describe('Users', () => {
     beforeEach((done) => { //Before each test we empty the database
         User.remove({}, (err) => { 
