@@ -1,6 +1,6 @@
 import uuidv4 from 'uuidv4';
 import moment from 'moment';
-import db from '../db/db';
+import * as db from '../db/db';
 import Helper from './helper.controller';
 
 const User = {
