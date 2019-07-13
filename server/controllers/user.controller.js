@@ -39,7 +39,7 @@ const User = {
         return res.status(404).send({ message: err });
       }
     } catch (err) {
-      res.status(400).send({ err: 'Please provide a password' });
+      res.status(400).send({ err: 'An error has been encountered' });
     }
   },
   async loginUser(req, res) {
