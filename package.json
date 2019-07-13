@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "build": "babel ./server/ --out-dir build",
     "server": "nodemon --exec babel-node server/server.js",
-    "server:prod": "SET NODE_ENV=production && node build/server",
+    "server:prod": "NODE_ENV=production node build/server",
     "dev": " npm-run-all server",
     "prod": "npm-run-all clean build server:prod",
     "start": "npm run prod"
