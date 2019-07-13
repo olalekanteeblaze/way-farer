@@ -13,24 +13,24 @@ const Booking = {
     const tripQuery = 'SELECT * FROM trip WHERE id = $1';
     const values = [
       uuidv4(),
-      req.user.id,
+      req.body.user_id,
       req.body.trip_id,
       req.body.seat_number,
       moment(new Date()),
     ];
     try {
       const { rows } = await db.pool.query(createBookingQuery, values);
-      const user = await db.pool.query(userQuery, [req.user.id]).rows;
+      const user = await db.pool.query(userQuery, [req.body.user_id]).rows;
       const trip = await db.pool.query(tripQuery, [req.body.trip_id]).rows;
       return res.json({
         status: 'Success',
         data: {
           booking_id: rows[0].id,
-          user_id: rows[0].user_id,
-          trip_id: rows[0].trip_id,
+          user_id: req.body.user_id,
+          trip_id: req.body.trip_id,
           bus_id: trip.bus_id,
           trip_date: trip.trip_date,
-          seat_number: rows[0].seat_number,
+          seat_number: req.body.seat_number,
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,

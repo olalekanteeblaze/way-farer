@@ -22,7 +22,7 @@ const User = {
     ];
     try {
       await db.pool.query(createUserQuery, values);
-      return res.status(200).json({
+      return res.json({
         status: 'Success',
         data: {
           user_id: req.body.id,
