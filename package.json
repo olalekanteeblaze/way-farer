@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/olalekanteeblaze/way-farer#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -41,6 +40,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@babel/core": "^7.5.4",
     "@babel/cli": "^7.5.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/runtime": "^7.5.4",
