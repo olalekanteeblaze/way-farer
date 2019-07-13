@@ -16,6 +16,6 @@ export default async function verifyToken(req, res, next) { //eslint-disable-lin
     req.user = { id: verifiedToken.id };
     next();
   } catch (err) {
-    return res.status.send({ err });
+    return res.send({ err });
   }
 }

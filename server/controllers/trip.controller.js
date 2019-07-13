@@ -5,13 +5,12 @@ import * as db from '../db/db';
 const Trip = {
   async createTrip(req, res) {
     const createTripQuery = `INSERT INTO
-                                trip(id, user_id, bus_id, origin, destination,trip_date, fare, status)
-                                values($1, $2, $3, $4, $5, $6, $7)
+                                trip(id, bus_id, origin, destination,trip_date, fare, status)
+                                values($1, $2, $3, $4, $5, $6)
                                 returning *
                                 `;
     const values = [
       uuidv4(),
-      req.user.id,
       req.body.bus_id,
       req.body.origin,
       req.body.destination,
