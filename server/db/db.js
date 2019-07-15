@@ -2,6 +2,7 @@ import { Client } from 'pg';
 
 const pool = new Client({
   connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
 
 const createUserTable = () => {

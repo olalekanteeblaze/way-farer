@@ -22,6 +22,7 @@ const Booking = {
       const { rows } = await db.pool.query(createBookingQuery, values);
       const user = await db.pool.query(userQuery, [req.body.user_id]).rows;
       const trip = await db.pool.query(tripQuery, [req.body.trip_id]).rows;
+      await db.pool.end();
       return res.json({
         status: 'Success',
         data: {
@@ -47,6 +48,7 @@ const Booking = {
       const bookings = [];
       if (req.user.isAdmin === 'True') {
         const { rows } = await db.pool.query(getAll);
+        await db.pool.end();
         rows.forEach((row) => {
           bookings.push(row);
         });
@@ -69,6 +71,7 @@ const Booking = {
     const deleteBookingQuery = 'DELETE from booking where id = $1 returning *';
     try {
       const { rows } = await db.pool.query(deleteBookingQuery, [req.params.id]);
+      await db.pool.end();
       return res.json({
         status: 'Success',
         data: rows[0],

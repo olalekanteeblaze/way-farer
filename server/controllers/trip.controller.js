@@ -23,6 +23,7 @@ const Trip = {
     try {
       const { rows } = await db.pool.query(createTripQuery, values);
       const user = await db.pool.query(userQuery, [req.body.user_id]).rows;
+      db.pool.end();
       return res.json({
         status: 'Success',
         data: {
@@ -41,6 +42,7 @@ const Trip = {
     try {
       const trips = [];
       const { rows } = await db.pool.query(getTripQuery, [req.body.user_id]);
+      await db.pool.end();
       rows.forEach((row) => {
         trips.push(row);
       });
@@ -59,6 +61,7 @@ const Trip = {
                             `;
     try {
       await db.pool.query(cancelTripQuery, [req.params.id]);
+      await db.pool.end();
     } catch (err) {
       return res.status(400).send({ message: err });
     }

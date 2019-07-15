@@ -22,6 +22,7 @@ const User = {
     ];
     try {
       await db.pool.query(createUserQuery, values);
+      await db.pool.end();
       return res.json({
         status: 'Success',
         data: {
@@ -41,6 +42,7 @@ const User = {
     const loginQuery = 'SELECT * FROM user WHERE EMAIL = $1';
     try {
       const { rows } = await db.pool.query(loginQuery, [req.body.email]);
+      await db.pool.end();
       if (!rows[0]) {
         return res.status(400).send({ err: 'Invalid credentials' });
       }
