@@ -34,13 +34,13 @@ const User = {
       if (err === '_bt_check_unique') {
         return res.status(400).send({ message: `Account with ${req.body.email} already exists` });
       }
-      return res.status(404).send({ message: err });
+      return res.status(400).send({ message: err });
     }
   },
   async loginUser(req, res) {
     const loginQuery = 'SELECT * FROM user WHERE EMAIL = $1';
     try {
-      const { rows } = await db.query(loginQuery, [req.body.email]);
+      const { rows } = await db.pool.query(loginQuery, [req.body.email]);
       if (!rows[0]) {
         return res.status(400).send({ err: 'Invalid credentials' });
       }
@@ -52,7 +52,7 @@ const User = {
         status: 'Success',
         data: {
           user_id: rows[0].id,
-          is_admin: rows[0].isAdmin,
+          is_admin: rows[0].is_admin,
           token,
           first_name: rows[0].first_name,
           last_name: rows[0].last_name,

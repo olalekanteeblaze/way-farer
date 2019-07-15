@@ -5,12 +5,13 @@ import * as db from '../db/db';
 const Trip = {
   async createTrip(req, res) {
     const createTripQuery = `INSERT INTO
-                                trip(id, bus_id, origin, destination,trip_date, fare, status)
-                                values($1, $2, $3, $4, $5, $6)
+                                trip(id, user_id, bus_id, origin, destination,trip_date, fare, status)
+                                values($1, $2, $3, $4, $5, $6, $7, $8)
                                 returning *
                                 `;
     const values = [
       uuidv4(),
+      req.body.user_id,
       req.body.bus_id,
       req.body.origin,
       req.body.destination,
@@ -21,7 +22,7 @@ const Trip = {
     const userQuery = 'SELECT * FROM user WHERE id = $1';
     try {
       const { rows } = await db.pool.query(createTripQuery, values);
-      const user = await db.pool.query(userQuery, [req.user.id]).rows;
+      const user = await db.pool.query(userQuery, [req.body.user_id]).rows;
       return res.json({
         status: 'Success',
         data: {
@@ -39,7 +40,7 @@ const Trip = {
     const getTripQuery = 'SELECT * FROM trip WHERE id = $1';
     try {
       const trips = [];
-      const { rows } = await db.pool.query(getTripQuery, [req.user.id]);
+      const { rows } = await db.pool.query(getTripQuery, [req.body.user_id]);
       rows.forEach((row) => {
         trips.push(row);
       });

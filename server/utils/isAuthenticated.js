@@ -9,13 +9,13 @@ export default async function verifyToken(req, res, next) { //eslint-disable-lin
   try {
     const verifiedToken = jwt.verify(token, process.env.SECRET);
     const queryText = 'SELECT * FROM user WHERE id = $1';
-    const { rows } = await db.query(queryText, [verifiedToken.userId]);
+    const { rows } = await db.pool.query(queryText, [verifiedToken.userId]);
     if (!rows[0]) {
       return res.status(400).send({ message: 'The token you provided is invalid' });
     }
     req.user = { id: verifiedToken.id };
     next();
   } catch (err) {
-    return res.send({ err });
+    return res.send({ message: err });
   }
 }

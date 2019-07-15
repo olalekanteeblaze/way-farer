@@ -69,7 +69,7 @@ describe('Trips', () => {
   describe('/ GET ', () => {
     it('it should GET trips', (done) => {
       chai.request(server)
-        .get('/trips')
+        .get('/api/v1/trips')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.data.should.be.a('array');
@@ -81,7 +81,7 @@ describe('Trips', () => {
   describe(' /PATCH', () => {
     it('should delete a trip', (done) => {
       chai.request(server)
-        .patch('/trips/:tripId')
+        .patch('api/v1/trips/:tripId')
         .end((err, res) => {
           res.should.have.a.status(200);
           res.body.data.should.be.a('object');
@@ -96,7 +96,7 @@ describe('Bookings', () => {
   describe('/POST Bookings', () => {
     it('should POST bookings info', (done) => {
       chai.request(server)
-        .post('/bookings')
+        .post('/api/v1/bookings')
         .send(user)
         .end((err, res) => {
           res.should.have.a.status(200);
@@ -109,7 +109,7 @@ describe('Bookings', () => {
   describe('/GET bookings', () => {
     it('should GET bookings info', (done) => {
       chai.request(server)
-        .get('/bookings')
+        .get('/api/v1/bookings')
         .end((err, res) => {
           res.should.have.a.status(200);
           res.body.data.should.be.a('array');
@@ -121,7 +121,7 @@ describe('Bookings', () => {
   describe('/DELETE bookings', () => {
     it('should DELETE a booking', (done) => {
       chai.request(server)
-        .delete('/bookings/:bookingId')
+        .delete('/api/v1/bookings/:bookingId')
         .end((err, res) => {
           res.should.have.a.status(200);
           res.body.data.should.be.a('object');

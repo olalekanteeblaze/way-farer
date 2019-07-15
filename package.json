@@ -7,9 +7,10 @@
     "test": "./node_modules/.bin/mocha tests/test --require @babel/register",
     "clean": "rimraf dist",
     "build": "babel ./server/ --out-dir build",
-    "server": "nodemon --exec babel-node server/server.js",
+    "server": "SET NODE_ENV=development && node build/server",
     "server:prod": "NODE_ENV=production node build/server",
-    "dev": " npm-run-all server",
+    "dev": " npm-run-all clean build server",
+    "dev-start": "npm run dev",
     "prod": "npm-run-all clean build server:prod",
     "start": "npm run prod"
   },

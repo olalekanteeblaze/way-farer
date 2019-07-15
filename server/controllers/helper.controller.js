@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+
 const Helper = {
   hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
@@ -13,7 +14,7 @@ const Helper = {
       userId: id,
     },
     process.env.SECRET,
-    { expiresIn: 86400 });
+    { expiresIn: '24h' });
     return token;
   },
 };
